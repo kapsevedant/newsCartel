@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "https://api.currentsapi.services",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": "/v1"
+    }
+  }
+}

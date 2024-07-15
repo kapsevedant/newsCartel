@@ -9,12 +9,11 @@ import {CommonDataModel} from "../data-models/common-data-model";
 })
 export class NewsServiceService {
   private apiKey = '4Qd3EUePkVKLhEwZbj_bemWmxe9uimfSSxpKLN8aWG8cCX7Y';
-  private generalNewsApiUrl = 'https://api.currentsapi.services/v1/latest-news';
-  private businessNewsApiUrl = 'https://api.currentsapi.services/v1/latest-news?category=business';
-  private SportsNewsApiUrl = 'https://api.currentsapi.services/v1/latest-news?category=sports';
-  private EntertainmentNewsApiUrl = 'https://api.currentsapi.services/v1/latest-news?category=entertainment';
-  private TechnologyNewsApiUrl = 'https://api.currentsapi.services/v1/latest-news?category=technology';
-
+  private generalNewsApiUrl = '/api/latest-news';
+  private businessNewsApiUrl = '/api/latest-news?category=business';
+  private SportsNewsApiUrl = '/api/latest-news?category=sports';
+  private EntertainmentNewsApiUrl = '/api/latest-news?category=entertainment';
+  private TechnologyNewsApiUrl = '/api/latest-news?category=technology';
 
   constructor(private http: HttpClient) {
   }
@@ -178,4 +177,5 @@ export class NewsServiceService {
       });
     });
   }
+
 }

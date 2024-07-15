@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {ScrollTopService} from "../services/scroll-top.service";
+import {MatDialog} from "@angular/material/dialog";
+import {WeatherComponent} from "../pages/weather/weather.component";
 
 @Component({
   selector: 'app-header',
@@ -10,7 +12,7 @@ export class HeaderComponent {
   protected logo: string = "news cartel";
   protected isMenuOpen: boolean = false;
 
-  constructor(private scrollService: ScrollTopService) {
+  constructor(private scrollService: ScrollTopService,private dialog: MatDialog) {
   }
 
   protected navLinks = [
@@ -46,6 +48,11 @@ export class HeaderComponent {
 
   protected scrollToTop() {
     this.scrollService.scrollToTop();
+  }
+
+  protected openWeatherChatBot(){
+    this.isMenuOpen=false;
+    this.dialog.open(WeatherComponent);
   }
 
 }
