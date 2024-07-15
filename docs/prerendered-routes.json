@@ -1,0 +1,9 @@
+{
+  "routes": [
+    "/business",
+    "/entertainment",
+    "/general",
+    "/sports",
+    "/technology"
+  ]
+}
