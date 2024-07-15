@@ -1,29 +1,29 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import {GeneralNewsDataModel} from "../../data-models/general-news-data-model";
 import {NewsServiceService} from "../../services/news-service.service";
 
 @Component({
-  selector: 'app-business',
-  templateUrl: './business.component.html',
-  styleUrl: './business.component.scss'
+  selector: 'app-technology',
+  templateUrl: './technology.component.html',
+  styleUrl: './technology.component.scss'
 })
-export class BusinessComponent {
-  protected heading: string = "Top Business";
-  protected businessNewsDataSource!: GeneralNewsDataModel[];
+export class TechnologyComponent {
+  protected heading: string = "Top Technology News";
+  protected technologyNewsDataSource!: GeneralNewsDataModel[];
 
-  constructor(private businessNews: NewsServiceService) {
+  constructor(private technologyNews: NewsServiceService) {
 
   }
 
-  ngOnInit() {
-    this.getBusinessNews();
+  ngOnInit(){
+    this.getTechnologyNews();
   }
 
-  protected getBusinessNews() {
-    this.businessNews.getBusinessNews_().subscribe(item => {
-      if (item && item.news) {
-        this.businessNewsDataSource = item.news;
-        console.log(this.businessNewsDataSource)
+  protected getTechnologyNews(){
+    this.technologyNews.getTechnologyNews_().subscribe(item => {
+      if(item && item.news){
+        this.technologyNewsDataSource = item.news;
+        console.log(this.technologyNewsDataSource)
       }
     })
   }
@@ -51,5 +51,4 @@ export class BusinessComponent {
       .replace(/(\d+:\d+:\d+)/, '$1')  // Remove space before time
       .replace(/(\w+)\s+(\w+)\s+(\d+)\s+(\d+)/, '$1 $2 $3 $4');  // Ensure single space between date parts
   }
-
 }

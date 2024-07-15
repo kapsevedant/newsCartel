@@ -1,6 +1,6 @@
 <div class="container pb-5">
   <div class="text-center text-size-30 mt-3 fw-bold">{{heading}}</div>
-  <div class="p-3 rounded border my-3 news-card" *ngFor="let item of businessNewsDataSource">
+  <div class="p-3 rounded border my-3 news-card" *ngFor="let item of technologyNewsDataSource">
     <div class="row">
       <div class="col-lg-5 col-md-5 col-sm-12">
         <img class="news-image" [src]="item.image">
@@ -11,8 +11,7 @@
         <div class="text-size-15 mt-2">{{item.description}}</div>
         <div class="text-size-15 mt-2 text-primary">Published On : {{formatDate(item.published)}}</div>
         <div class="mt-2">
-          <button class="p-1 bg-transparent"><a [href]="item.url" class="text-decoration-none text-dark text-size-15">Read
-            More</a></button>
+          <button class="p-1 bg-transparent"><a [href]="item.url" class="text-decoration-none text-dark text-size-15">Read More</a></button>
         </div>
       </div>
     </div>

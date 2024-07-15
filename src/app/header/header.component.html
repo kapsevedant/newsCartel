@@ -1,1 +1,26 @@
-<p>header works!</p>
+<header class="header">
+  <div class="logo">
+    <a href="/">{{logo}}</a>
+  </div>
+  <nav [class.open]="isMenuOpen">
+    <ul>
+      <li *ngFor="let links of navLinks"><a [routerLink]="links.link" (click)="closeMenu()">{{links.name}}</a></li>
+    </ul>
+  </nav>
+  <button class="menu-toggle" (click)="toggleMenu()">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+</header>
+
+
+
+<router-outlet></router-outlet>
+<div class="footer p-3 d-flex justify-content-between">
+  <div>Developed By Vedant</div>
+  <button class="scroll-to-top" (click)="scrollToTop()">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+</div>
+
