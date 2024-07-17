@@ -1,0 +1,35 @@
+/* currency-converter.component.scss */
+.mat-dialog-content {
+  padding: 1rem;
+  max-width: 100%;
+}
+
+h2 {
+  color: #007bff;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.alert-primary {
+  background-color: #cce5ff;
+  border-color: #b8daff;
+  color: #004085;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .mat-dialog-content {
+    padding: 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}

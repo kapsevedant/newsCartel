@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {GeneralNewsDataModel} from "../../data-models/general-news-data-model";
 import {NewsServiceService} from "../../services/news-service.service";
 
 @Component({
@@ -9,23 +8,16 @@ import {NewsServiceService} from "../../services/news-service.service";
 })
 export class EntertainmentComponent {
   protected heading: string = "Top Entertainment News";
-  protected entertainmentNewsDataSource!: GeneralNewsDataModel[];
+  protected entertainmentNewsDataSource!: any;
+  protected isLoading: boolean = false;
 
-  constructor(private generalNews: NewsServiceService) {
+
+  constructor(private entertainmentNews: NewsServiceService) {
 
   }
 
   ngOnInit(){
     this.getEntertainmentNews();
-  }
-
-  protected getEntertainmentNews(){
-    this.generalNews.getEntertainmentNews_().subscribe(item => {
-      if(item && item.news){
-        this.entertainmentNewsDataSource = item.news;
-        console.log(this.entertainmentNewsDataSource)
-      }
-    })
   }
 
   protected formatDate(dateString: string): string {
@@ -50,5 +42,15 @@ export class EntertainmentComponent {
       .replace(/,/g, '')  // Remove all commas
       .replace(/(\d+:\d+:\d+)/, '$1')  // Remove space before time
       .replace(/(\w+)\s+(\w+)\s+(\d+)\s+(\d+)/, '$1 $2 $3 $4');  // Ensure single space between date parts
+  }
+
+  protected getEntertainmentNews(){
+    this.isLoading = true;
+    this.entertainmentNews.getEntertainmentNews().subscribe(data=>{
+      if(data && data.articles){
+        this.entertainmentNewsDataSource = data.articles
+      }
+      this.isLoading = false;
+    })
   }
 }

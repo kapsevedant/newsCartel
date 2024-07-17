@@ -6,6 +6,10 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
 
+  .city-not-found{
+    background-color:#eaadb5;
+  }
+
   .input-group {
     display: flex;
     margin-bottom: 1rem;
@@ -60,11 +64,9 @@
   }
 
   @media (max-width: 768px) {
-    width: 25rem;
-    padding: 0.5rem;
-
+    width:18rem;
+    margin: auto;
     .input-group {
-      //flex-direction: column;
 
       .form-control {
         border-radius: 5px;

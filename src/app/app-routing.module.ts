@@ -5,6 +5,7 @@ import {BusinessComponent} from "./pages/business/business.component";
 import {EntertainmentComponent} from "./pages/entertainment/entertainment.component";
 import {SportsComponent} from "./pages/sports/sports.component";
 import {TechnologyComponent} from "./pages/technology/technology.component";
+import {HealthComponent} from "./pages/health/health.component";
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path:'technology',
     component:TechnologyComponent,
+  },
+  {
+    path:'health',
+    component:HealthComponent,
   },
   { path: '', redirectTo: '/general', pathMatch: 'full' }
 ];

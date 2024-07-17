@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {WeatherService} from "../../services/weather.service";
+import {catchError, throwError} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-weather',
@@ -9,6 +11,7 @@ import {WeatherService} from "../../services/weather.service";
 export class WeatherComponent implements OnInit {
   protected city!: string;
   protected weatherData!: any;
+  protected errorMessage: string | null = null;
 
   constructor(private weatherService: WeatherService) {
   }
@@ -18,10 +21,20 @@ export class WeatherComponent implements OnInit {
   }
 
   protected getWeather() {
-    this.weatherService.getWeather(this.city).subscribe(data => {
+    this.errorMessage = null;
+
+    this.weatherService.getWeather(this.city).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.weatherData = null;
+          this.errorMessage = 'City not found. Please enter a valid city name.';
+        }
+        return throwError(() => new Error('Error fetching weather data.'));
+      })
+    ).subscribe(data => {
         this.weatherData = data;
       }
-    )
+    );
   }
 
   protected convertKelvinToCelsius(tempKelvin: number): number {

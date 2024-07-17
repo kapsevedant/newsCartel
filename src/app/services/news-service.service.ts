@@ -15,167 +15,37 @@ export class NewsServiceService {
   private EntertainmentNewsApiUrl = '/api/latest-news?category=entertainment';
   private TechnologyNewsApiUrl = '/api/latest-news?category=technology';
 
+  private apiUrl = 'https://newsapi.org/v2/top-headlines?country=in&apiKey=46b83c6d3f5346778bad4e99900b6ffc';
+  private businessApiUrl = 'https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=46b83c6d3f5346778bad4e99900b6ffc';
+  private technologyApiUrl = 'https://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=46b83c6d3f5346778bad4e99900b6ffc';
+  private sportsApiUrl = 'https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=46b83c6d3f5346778bad4e99900b6ffc';
+  private entertainmentApiUrl = 'https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=46b83c6d3f5346778bad4e99900b6ffc'
+  private healthApiUrl = 'https://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=46b83c6d3f5346778bad4e99900b6ffc';
+
   constructor(private http: HttpClient) {
   }
 
-  public getGeneralNews(url: string): Observable<HttpResponse<CommonDataModel<GeneralNewsDataModel>>> {
-    const headers = new HttpHeaders({
-      'Authorization': this.apiKey
-    });
-    return this.http.get<CommonDataModel<GeneralNewsDataModel>>(url, {
-      headers: headers,
-      observe: 'response'
-    });
+  public getNewsAll(): Observable<any> {
+    return this.http.get(this.apiUrl);
   }
 
-  public getGeneralNews_(): Observable<CommonDataModel<GeneralNewsDataModel>> {
-    return new Observable((subscriber) => {
-      const endpoints = this.generalNewsApiUrl;
-      this.getGeneralNews(endpoints).subscribe({
-        next: (response: HttpResponse<CommonDataModel<GeneralNewsDataModel>>) => {
-          if (response.status === HttpStatusCode.Ok) {
-            if (response.body) {
-              subscriber.next(response.body);
-            } else {
-              subscriber.error(response.body);
-            }
-          } else {
-            subscriber.error(response.status);
-          }
-        },
-        error: (error) => {
-          subscriber.error(error);
-        },
-      });
-    });
+  public getBusinessNews():Observable<any>{
+    return this.http.get(this.businessApiUrl);
   }
 
-  public getBusinessNews(url: string): Observable<HttpResponse<CommonDataModel<GeneralNewsDataModel>>> {
-    const headers = new HttpHeaders({
-      'Authorization': this.apiKey
-    });
-    return this.http.get<CommonDataModel<GeneralNewsDataModel>>(url, {
-      headers: headers,
-      observe: 'response'
-    });
+  public getTechnologyNews():Observable<any>{
+    return this.http.get(this.technologyApiUrl);
   }
 
-  public getBusinessNews_(): Observable<CommonDataModel<GeneralNewsDataModel>> {
-    return new Observable((subscriber) => {
-      const endpoints = this.businessNewsApiUrl;
-      this.getBusinessNews(endpoints).subscribe({
-        next: (response: HttpResponse<CommonDataModel<GeneralNewsDataModel>>) => {
-          if (response.status === HttpStatusCode.Ok) {
-            if (response.body) {
-              subscriber.next(response.body);
-            } else {
-              subscriber.error(response.body);
-            }
-          } else {
-            subscriber.error(response.status);
-          }
-        },
-        error: (error) => {
-          subscriber.error(error);
-        },
-      });
-    });
+  public getSportsNews():Observable<any>{
+    return this.http.get(this.sportsApiUrl);
   }
 
-  public getSportsNews(url: string): Observable<HttpResponse<CommonDataModel<GeneralNewsDataModel>>> {
-    const headers = new HttpHeaders({
-      'Authorization': this.apiKey
-    });
-    return this.http.get<CommonDataModel<GeneralNewsDataModel>>(url, {
-      headers: headers,
-      observe: 'response'
-    });
+  public getEntertainmentNews():Observable<any>{
+    return this.http.get(this.entertainmentApiUrl);
   }
 
-  public getSportsNews_(): Observable<CommonDataModel<GeneralNewsDataModel>> {
-    return new Observable((subscriber) => {
-      const endpoints = this.SportsNewsApiUrl;
-      this.getSportsNews(endpoints).subscribe({
-        next: (response: HttpResponse<CommonDataModel<GeneralNewsDataModel>>) => {
-          if (response.status === HttpStatusCode.Ok) {
-            if (response.body) {
-              subscriber.next(response.body);
-            } else {
-              subscriber.error(response.body);
-            }
-          } else {
-            subscriber.error(response.status);
-          }
-        },
-        error: (error) => {
-          subscriber.error(error);
-        },
-      });
-    });
+  public getHealthNews():Observable<any>{
+    return this.http.get(this.healthApiUrl);
   }
-
-  public getEntertainmentNews(url: string): Observable<HttpResponse<CommonDataModel<GeneralNewsDataModel>>> {
-    const headers = new HttpHeaders({
-      'Authorization': this.apiKey
-    });
-    return this.http.get<CommonDataModel<GeneralNewsDataModel>>(url, {
-      headers: headers,
-      observe: 'response'
-    });
-  }
-
-  public getEntertainmentNews_(): Observable<CommonDataModel<GeneralNewsDataModel>> {
-    return new Observable((subscriber) => {
-      const endpoints = this.EntertainmentNewsApiUrl;
-      this.getEntertainmentNews(endpoints).subscribe({
-        next: (response: HttpResponse<CommonDataModel<GeneralNewsDataModel>>) => {
-          if (response.status === HttpStatusCode.Ok) {
-            if (response.body) {
-              subscriber.next(response.body);
-            } else {
-              subscriber.error(response.body);
-            }
-          } else {
-            subscriber.error(response.status);
-          }
-        },
-        error: (error) => {
-          subscriber.error(error);
-        },
-      });
-    });
-  }
-
-  public getTechnologyNews(url: string): Observable<HttpResponse<CommonDataModel<GeneralNewsDataModel>>> {
-    const headers = new HttpHeaders({
-      'Authorization': this.apiKey
-    });
-    return this.http.get<CommonDataModel<GeneralNewsDataModel>>(url, {
-      headers: headers,
-      observe: 'response'
-    });
-  }
-
-  public getTechnologyNews_(): Observable<CommonDataModel<GeneralNewsDataModel>> {
-    return new Observable((subscriber) => {
-      const endpoints = this.TechnologyNewsApiUrl;
-      this.getTechnologyNews(endpoints).subscribe({
-        next: (response: HttpResponse<CommonDataModel<GeneralNewsDataModel>>) => {
-          if (response.status === HttpStatusCode.Ok) {
-            if (response.body) {
-              subscriber.next(response.body);
-            } else {
-              subscriber.error(response.body);
-            }
-          } else {
-            subscriber.error(response.status);
-          }
-        },
-        error: (error) => {
-          subscriber.error(error);
-        },
-      });
-    });
-  }
-
 }

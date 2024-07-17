@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {GeneralNewsDataModel} from "../../data-models/general-news-data-model";
 import {NewsServiceService} from "../../services/news-service.service";
 
 @Component({
@@ -9,23 +8,15 @@ import {NewsServiceService} from "../../services/news-service.service";
 })
 export class BusinessComponent {
   protected heading: string = "Top Business";
-  protected businessNewsDataSource!: GeneralNewsDataModel[];
+  protected businessNewsDataSource!: any;
+  protected isLoading: boolean = false;
 
   constructor(private businessNews: NewsServiceService) {
 
   }
 
   ngOnInit() {
-    this.getBusinessNews();
-  }
-
-  protected getBusinessNews() {
-    this.businessNews.getBusinessNews_().subscribe(item => {
-      if (item && item.news) {
-        this.businessNewsDataSource = item.news;
-        console.log(this.businessNewsDataSource)
-      }
-    })
+    this.getBusinessNews()
   }
 
   protected formatDate(dateString: string): string {
@@ -52,4 +43,13 @@ export class BusinessComponent {
       .replace(/(\w+)\s+(\w+)\s+(\d+)\s+(\d+)/, '$1 $2 $3 $4');  // Ensure single space between date parts
   }
 
+  protected getBusinessNews() {
+    this.isLoading = true;
+    this.businessNews.getBusinessNews().subscribe(data => {
+      if (data && data.articles) {
+        this.businessNewsDataSource = data.articles;
+      }
+      this.isLoading = false
+    })
+  }
 }

@@ -14,6 +14,9 @@ import {TechnologyComponent} from './pages/technology/technology.component';
 import {WeatherComponent} from './pages/weather/weather.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule} from "@angular/forms";
+import { CurrencyConverterComponent } from './pages/currency-converter/currency-converter.component';
+import { HealthComponent } from './pages/health/health.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -25,13 +28,16 @@ import {FormsModule} from "@angular/forms";
     BusinessComponent,
     TechnologyComponent,
     WeatherComponent,
+    CurrencyConverterComponent,
+    HealthComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     provideClientHydration(),

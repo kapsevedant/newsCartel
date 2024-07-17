@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import {GeneralNewsDataModel} from "../../data-models/general-news-data-model";
+import {Component} from '@angular/core';
 import {NewsServiceService} from "../../services/news-service.service";
 
 @Component({
@@ -9,23 +8,15 @@ import {NewsServiceService} from "../../services/news-service.service";
 })
 export class TechnologyComponent {
   protected heading: string = "Top Technology News";
-  protected technologyNewsDataSource!: GeneralNewsDataModel[];
+  protected technologyNewsDataSource!: any;
+  protected isLoading: boolean = false;
 
   constructor(private technologyNews: NewsServiceService) {
 
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getTechnologyNews();
-  }
-
-  protected getTechnologyNews(){
-    this.technologyNews.getTechnologyNews_().subscribe(item => {
-      if(item && item.news){
-        this.technologyNewsDataSource = item.news;
-        console.log(this.technologyNewsDataSource)
-      }
-    })
   }
 
   protected formatDate(dateString: string): string {
@@ -50,5 +41,15 @@ export class TechnologyComponent {
       .replace(/,/g, '')  // Remove all commas
       .replace(/(\d+:\d+:\d+)/, '$1')  // Remove space before time
       .replace(/(\w+)\s+(\w+)\s+(\d+)\s+(\d+)/, '$1 $2 $3 $4');  // Ensure single space between date parts
+  }
+
+  protected getTechnologyNews() {
+    this.isLoading = true;
+    this.technologyNews.getTechnologyNews().subscribe(data => {
+      if (data && data.articles) {
+        this.technologyNewsDataSource = data.articles;
+      }
+      this.isLoading = false;
+    })
   }
 }

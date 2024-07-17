@@ -1,22 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 import {NewsServiceService} from "../../services/news-service.service";
 
 @Component({
-  selector: 'app-general',
-  templateUrl: './general.component.html',
-  styleUrl: './general.component.scss'
+  selector: 'app-health',
+  templateUrl: './health.component.html',
+  styleUrl: './health.component.scss'
 })
-export class GeneralComponent implements OnInit {
-  protected heading: string = "Top General News";
-  protected generalNewsDataSource!: any;
+export class HealthComponent {
+  protected heading: string = "Top Health News";
+  protected healthNewsDataSource!: any;
   protected isLoading: boolean = false;
 
-  constructor(private generalNews: NewsServiceService) {
+  constructor(private healthNews: NewsServiceService) {
 
   }
 
   ngOnInit() {
-    this.getNews();
+    this.getTechnologyNews();
   }
 
   protected formatDate(dateString: string): string {
@@ -43,12 +43,11 @@ export class GeneralComponent implements OnInit {
       .replace(/(\w+)\s+(\w+)\s+(\d+)\s+(\d+)/, '$1 $2 $3 $4');  // Ensure single space between date parts
   }
 
-  protected getNews() {
+  protected getTechnologyNews() {
     this.isLoading = true;
-    this.generalNews.getNewsAll().subscribe(data => {
-      if (data && data.articles) {
-        this.generalNewsDataSource = data.articles;
-        console.log(this.generalNewsDataSource)
+    this.healthNews.getHealthNews().subscribe(data => {
+      if(data && data.articles){
+        this.healthNewsDataSource = data.articles;
       }
       this.isLoading = false;
     })

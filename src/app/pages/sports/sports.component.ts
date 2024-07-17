@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import {GeneralNewsDataModel} from "../../data-models/general-news-data-model";
+import {Component} from '@angular/core';
 import {NewsServiceService} from "../../services/news-service.service";
 
 @Component({
@@ -9,23 +8,15 @@ import {NewsServiceService} from "../../services/news-service.service";
 })
 export class SportsComponent {
   protected heading: string = "Top Sports News";
-  protected sportsNewsDataSource!: GeneralNewsDataModel[];
+  protected sportsNewsDataSource!: any;
+  protected isLoading: boolean = false;
+
 
   constructor(private sportsNews: NewsServiceService) {
-
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getSportsNews();
-  }
-
-  protected getSportsNews(){
-    this.sportsNews.getSportsNews_().subscribe(item => {
-      if(item && item.news){
-        this.sportsNewsDataSource = item.news;
-        console.log(this.sportsNewsDataSource)
-      }
-    })
   }
 
   protected formatDate(dateString: string): string {
@@ -50,5 +41,15 @@ export class SportsComponent {
       .replace(/,/g, '')  // Remove all commas
       .replace(/(\d+:\d+:\d+)/, '$1')  // Remove space before time
       .replace(/(\w+)\s+(\w+)\s+(\d+)\s+(\d+)/, '$1 $2 $3 $4');  // Ensure single space between date parts
+  }
+
+  protected getSportsNews() {
+    this.isLoading = true;
+    this.sportsNews.getSportsNews().subscribe(data => {
+      if(data && data.articles){
+        this.sportsNewsDataSource = data.articles
+      }
+      this.isLoading = false;
+    })
   }
 }

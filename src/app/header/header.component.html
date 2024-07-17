@@ -7,6 +7,8 @@
       <li *ngFor="let links of navLinks"><a [routerLink]="links.link" routerLinkActive="active-link"
                                             [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">{{links.name}}</a></li>
       <li class="text-white"><i class="bi bi-cloud-haze"></i> <a (click)="openWeatherChatBot()" class="cursor-pointer"> Weather </a></li>
+      <li class="text-white"><i class="bi bi-currency-exchange"></i> <a (click)="openCourrencyConModal()" class="cursor-pointer"> Currency Converter </a></li>
+
     </ul>
   </nav>
   <button class="menu-toggle" (click)="toggleMenu()">
@@ -16,13 +18,13 @@
   </button>
 </header>
 
-
+<button class="scroll-to-top" (click)="scrollToTop()">
+  <i class="bi bi-arrow-up"></i>
+</button>
 
 <router-outlet></router-outlet>
 <div class="footer p-3 d-flex justify-content-between">
-  <div>Developed By Vedant</div>
-  <button class="scroll-to-top" (click)="scrollToTop()">
-    <i class="bi bi-arrow-up"></i>
-  </button>
+  <div class="text-size-18"><i class="bi bi-c-square-fill"></i> Copyright <span class="text-primary fw-bold">{{currentYear}} </span></div>
+  <div class="text-size-18">Developed By : <span class="text-primary fw-medium">{{myName}}</span></div>
 </div>
 
