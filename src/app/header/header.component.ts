@@ -11,7 +11,7 @@ import {CurrencyConverterComponent} from "../pages/currency-converter/currency-c
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  protected logo: string = "news cartel";
+  protected logo: string = "newsCartel";
   protected isMenuOpen: boolean = false;
   protected currentYear!:number;
   protected myName : string = 'Vedant';
